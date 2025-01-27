@@ -30,7 +30,7 @@ jobs:
       # 4) Run unit tests (fail fast if any test fails)
       - name: Run Python unittests
         run: |
-          python -m unittest discover -v
+          python -m unittest discover -s tests -v
 
       # 5) Build Docker Image (only if tests above passed)
       - name: Build Docker image
