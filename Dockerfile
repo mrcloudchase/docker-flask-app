@@ -27,7 +27,7 @@ EXPOSE 5000
 ENV FLASK_ENV=production
 
 # Healthcheck
-HEALTHCHECK --interval=30s --timeout=5s --start-period=30s\
+HEALTHCHECK --interval=30s --timeout=5s --start-period=30s \
   CMD wget --no-verbose --tries=1 --spider http://127.0.0.1:5000/health || exit 1
 
 # Start the Flask application
