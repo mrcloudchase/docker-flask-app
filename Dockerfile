@@ -1,9 +1,9 @@
 # syntax=docker/dockerfile:1
 
-FROM python:3.13-alpine
+FROM python:3.12-slim
 
 # Create a non-root user and group
-RUN addgroup -S appgroup && adduser -S appuser -G appgroup
+RUN addgroup --system appgroup && adduser --system --ingroup appgroup appuser
 
 # Set a working directory
 WORKDIR /app
@@ -27,7 +27,7 @@ EXPOSE 5000
 ENV FLASK_ENV=production
 
 # Healthcheck
-HEALTHCHECK --interval=30s --timeout=5s --start-period=30s\
+HEALTHCHECK --interval=30s --timeout=5s --start-period=30s \
   CMD wget --no-verbose --tries=1 --spider http://127.0.0.1:5000/health || exit 1
 
 # Start the Flask application
